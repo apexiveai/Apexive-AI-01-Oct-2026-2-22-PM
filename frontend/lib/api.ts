@@ -1,9 +1,13 @@
-const API_URL =
-
-  process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 if (!API_URL) {
-  throw new Error("NEXT_PUBLIC_API_URL is not defined in the environment variables");
+
+  throw new Error(
+
+    "NEXT_PUBLIC_API_URL is not defined in the environment variables",
+
+  );
+
 }
 
 export type Category = {
@@ -78,37 +82,27 @@ async function request<T>(
 
 ): Promise<T> {
 
-  const response = await fetch(
+  const response = await fetch(`${API_URL}${endpoint}`, {
 
-    `${API_URL}${endpoint}`,
+    ...options,
 
-    {
+    headers: {
 
-      ...options,
+      "Content-Type": "application/json",
 
-      headers: {
-
-        "Content-Type": "application/json",
-
-        ...(options?.headers ?? {}),
-
-      },
-
-      cache: "no-store",
+      ...(options?.headers ?? {}),
 
     },
 
-  );
+    cache: "no-store",
+
+  });
 
   if (!response.ok) {
 
     const error = await response.text();
 
-    throw new Error(
-
-      error || "API request failed",
-
-    );
+    throw new Error(error || "API request failed");
 
   }
 
@@ -126,9 +120,7 @@ function getAuthHeaders(): HeadersInit {
 
   }
 
-  const token =
-
-    localStorage.getItem("apexive_token");
+  const token = localStorage.getItem("apexive_token");
 
   if (!token) {
 
@@ -139,46 +131,32 @@ function getAuthHeaders(): HeadersInit {
   return {
 
     Authorization: `Bearer ${token}`,
+
   };
+
 }
 
 export function getCategories() {
 
-  return request<Category[]>(
-
-    "/api/categories",
-
-  );
+  return request<Category[]>("/api/categories");
 
 }
 
 export function getThreads() {
 
-  return request<Thread[]>(
-
-    "/api/threads",
-
-  );
+  return request<Thread[]>("/api/threads");
 
 }
 
 export function getThread(threadId: number) {
 
-  return request<Thread>(
-    `/api/threads/${threadId}`,
-  );
+  return request<Thread>(`/api/threads/${threadId}`);
 
 }
 
-export function getReplies(
+export function getReplies(threadId: number) {
 
-  threadId: number,
-
-) {
-
-  return request<Reply[]>(
-    `/api/replies/thread/${threadId}`,
-  );
+  return request<Reply[]>(`/api/replies/thread/${threadId}`);
 
 }
 
@@ -192,25 +170,19 @@ export function createCategory(data: {
 
 }) {
 
-  return request<Category>(
+  return request<Category>("/api/categories", {
 
-    "/api/categories",
+    method: "POST",
 
-    {
+    body: JSON.stringify(data),
 
-      method: "POST",
+    headers: {
 
-      body: JSON.stringify(data),
-
-      headers: {
-
-        ...getAuthHeaders(),
-
-      },
+      ...getAuthHeaders(),
 
     },
 
-  );
+  });
 
 }
 
@@ -226,25 +198,19 @@ export function createThread(data: {
 
 }) {
 
-  return request<Thread>(
+  return request<Thread>("/api/threads", {
 
-    "/api/threads",
+    method: "POST",
 
-    {
+    body: JSON.stringify(data),
 
-      method: "POST",
+    headers: {
 
-      body: JSON.stringify(data),
-
-      headers: {
-
-        ...getAuthHeaders(),
-
-      },
+      ...getAuthHeaders(),
 
     },
 
-  );
+  });
 
 }
 
@@ -256,25 +222,19 @@ export function createReply(data: {
 
 }) {
 
-  return request<Reply>(
+  return request<Reply>("/api/replies", {
 
-    "/api/replies",
+    method: "POST",
 
-    {
+    body: JSON.stringify(data),
 
-      method: "POST",
+    headers: {
 
-      body: JSON.stringify(data),
-
-      headers: {
-
-        ...getAuthHeaders(),
-
-      },
+      ...getAuthHeaders(),
 
     },
 
-  );
+  });
 
 }
 
@@ -398,12 +358,7 @@ export async function getArticles(): Promise<Article[]> {
 
 }
 
-export async function getArticle(
-
-  slug: string,
-
-): Promise<Article> {
-
+export async function getArticle(slug: string): Promise<Article> {
   const response = await fetch(
 
     `${API_URL}/api/articles/${encodeURIComponent(slug)}`,
@@ -428,17 +383,11 @@ export async function getArticle(
 
 export async function getFeaturedArticles(): Promise<Article[]> {
 
-  const response = await fetch(
+  const response = await fetch(`${API_URL}/api/articles/featured`, {
 
-    `${API_URL}/api/articles/featured`,
+    cache: "no-store",
 
-    {
-
-      cache: "no-store",
-
-    },
-
-  );
+  });
 
   if (!response.ok) {
 
@@ -468,11 +417,7 @@ export async function getProjects(): Promise<Project[]> {
 
 }
 
-export async function getProject(
-
-  slug: string,
-
-): Promise<Project> {
+export async function getProject(slug: string): Promise<Project> {
 
   const response = await fetch(
 
@@ -498,17 +443,11 @@ export async function getProject(
 
 export async function getFeaturedProjects(): Promise<Project[]> {
 
-  const response = await fetch(
+  const response = await fetch(`${API_URL}/api/projects/featured`, {
 
-    `${API_URL}/api/projects/featured`,
+    cache: "no-store",
 
-    {
-
-      cache: "no-store",
-
-    },
-
-  );
+  });
 
   if (!response.ok) {
 
@@ -538,11 +477,7 @@ export async function getResources(): Promise<Resource[]> {
 
 }
 
-export async function getResource(
-
-  slug: string,
-
-): Promise<Resource> {
+export async function getResource(slug: string): Promise<Resource> {
 
   const response = await fetch(
 
@@ -568,17 +503,11 @@ export async function getResource(
 
 export async function getFeaturedResources(): Promise<Resource[]> {
 
-  const response = await fetch(
+  const response = await fetch(`${API_URL}/api/resources/featured`, {
 
-    `${API_URL}/api/resources/featured`,
+    cache: "no-store",
 
-    {
-
-      cache: "no-store",
-
-    },
-
-  );
+  });
 
   if (!response.ok) {
 
@@ -590,31 +519,27 @@ export async function getFeaturedResources(): Promise<Resource[]> {
 
 }
 
-export async function createArticle(
+export async function createArticle(payload: {
 
-  payload: {
+  title: string;
 
-    title: string;
+  slug: string;
 
-    slug: string;
+  excerpt: string;
 
-    excerpt: string;
+  content: string;
 
-    content: string;
+  category: string;
 
-    category: string;
+  cover_image_url?: string | null;
 
-    cover_image_url?: string | null;
+  read_time_minutes: number;
 
-    read_time_minutes: number;
+  is_published: boolean;
 
-    is_published: boolean;
+  is_featured: boolean;
 
-    is_featured: boolean;
-
-  },
-
-) {
+}) {
 
   return apiFetch<Article>("/api/articles", {
 
@@ -622,37 +547,39 @@ export async function createArticle(
 
     body: JSON.stringify(payload),
 
+    headers: {
+
+      ...getAuthHeaders(),
+
+    },
+
   });
 
 }
 
-export async function createProject(
+export async function createProject(payload: {
 
-  payload: {
+  name: string;
 
-    name: string;
+  slug: string;
 
-    slug: string;
+  description: string;
 
-    description: string;
+  content: string;
 
-    content: string;
+  category: string;
 
-    category: string;
+  repository_url?: string | null;
 
-    repository_url?: string | null;
+  website_url?: string | null;
 
-    website_url?: string | null;
+  logo_url?: string | null;
 
-    logo_url?: string | null;
+  status: string;
 
-    status: string;
+  is_featured: boolean;
 
-    is_featured: boolean;
-
-  },
-
-) {
+}) {
 
   return apiFetch<Project>("/api/projects", {
 
@@ -660,43 +587,51 @@ export async function createProject(
 
     body: JSON.stringify(payload),
 
+    headers: {
+
+      ...getAuthHeaders(),
+
+    },
+
   });
 
 }
 
-export async function createResource(
+export async function createResource(payload: {
 
-  payload: {
+  title: string;
 
-    title: string;
+  slug: string;
 
-    slug: string;
+  description: string;
 
-    description: string;
+  content: string;
 
-    content: string;
+  resource_type: string;
 
-    resource_type: string;
+  category: string;
 
-    category: string;
+  file_url?: string | null;
 
-    file_url?: string | null;
+  file_size?: string | null;
 
-    file_size?: string | null;
+  is_featured: boolean;
 
-    is_featured: boolean;
+  is_published: boolean;
 
-    is_published: boolean;
-
-  },
-
-) {
+}) {
 
   return apiFetch<Resource>("/api/resources", {
 
     method: "POST",
 
     body: JSON.stringify(payload),
+
+    headers: {
+
+      ...getAuthHeaders(),
+
+    },
 
   });
 
