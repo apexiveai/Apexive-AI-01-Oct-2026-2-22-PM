@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+:root {
+
+  --background: #ffffff;
+
+  --foreground: #171717;
+
+}
+
+@theme inline {
+
+  --color-background: var(--background);
+
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-geist-sans);
+
+  --font-mono: var(--font-geist-mono);
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+
+    --background: #0a0a0a;
+
+    --foreground: #ededed;
+
+  }
+
+}
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+body {
+
+  margin: 0;
+
+  background: var(--background);
+
+  color: var(--foreground);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  overflow-x: hidden;
+
+}
+
+/* =========================================
+
+   APEXIVE GLOBAL MOTION
+
+   ========================================= */
+
+@keyframes apexiveFloat {
+
+  0%,
+
+  100% {
+
+    transform: translate3d(0, 0, 0);
+
+  }
+
+  50% {
+
+    transform: translate3d(0, -12px, 0);
+
+  }
+
+}
+
+@keyframes apexiveFloatSlow {
+
+  0%,
+
+  100% {
+
+    transform: translate3d(0, 0, 0) rotate(0deg);
+
+  }
+
+  50% {
+
+    transform: translate3d(10px, -18px, 0) rotate(2deg);
+
+  }
+
+}
+
+@keyframes apexivePulse {
+
+  0%,
+
+  100% {
+
+    opacity: 0.45;
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+    transform: scale(1.08);
+
+  }
+
+}
+
+@keyframes apexiveGlow {
+
+  0%,
+
+  100% {
+
+    opacity: 0.35;
+
+  }
+
+  50% {
+
+    opacity: 0.8;
+
+  }
+
+}
+
+@keyframes apexiveScan {
+
+  0% {
+
+    transform: translateY(-120%);
+
+  }
+
+  100% {
+
+    transform: translateY(120%);
+
+  }
+
+}
+
+@keyframes apexiveShimmer {
+
+  0% {
+
+    transform: translateX(-120%);
+
+  }
+
+  100% {
+
+    transform: translateX(120%);
+
+  }
+
+}
+
+@keyframes apexiveBlink {
+
+  0%,
+
+  45%,
+
+  100% {
+
+    opacity: 1;
+
+  }
+
+  50%,
+
+  95% {
+
+    opacity: 0.35;
+
+  }
+
+}
+
+@keyframes apexiveGrid {
+
+  0% {
+
+    background-position:
+
+      0 0,
+
+      0 0;
+
+  }
+
+  100% {
+
+    background-position:
+
+      40px 40px,
+
+      40px 40px;
+
+  }
+
+}
+
+/* =========================================
+
+   UTILITY CLASSES
+
+   ========================================= */
+
+.apexive-float {
+
+  animation: apexiveFloat 5s ease-in-out infinite;
+
+}
+
+.apexive-float-slow {
+
+  animation: apexiveFloatSlow 8s ease-in-out infinite;
+
+}
+
+.apexive-pulse {
+
+  animation: apexivePulse 2.4s ease-in-out infinite;
+
+}
+
+.apexive-glow {
+
+  animation: apexiveGlow 3s ease-in-out infinite;
+
+}
+
+.apexive-scan {
+
+  animation: apexiveScan 4s linear infinite;
+
+}
+
+.apexive-blink {
+
+  animation: apexiveBlink 2s ease-in-out infinite;
+
+}
+
+.apexive-shimmer {
+
+  animation: apexiveShimmer 2.5s ease-in-out infinite;
+
+}
+
+.apexive-grid {
+
+  background-image:
+
+    linear-gradient(
+
+      rgba(0, 0, 0, 0.035) 1px,
+
+      transparent 1px
+
+    ),
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(0, 0, 0, 0.035) 1px,
+
+      transparent 1px
+
+    );
+
+  background-size:
+
+    40px 40px,
+
+    40px 40px;
+
+  animation: apexiveGrid 12s linear infinite;
+
+}
+
+/* =========================================
+
+   GLASS
+
+   ========================================= */
+
+.apexive-glass {
+
+  background: rgba(255, 255, 255, 0.72);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(0, 0, 0, 0.07);
+
+}
+
+/* =========================================
+
+   HOVER EFFECTS
+
+   ========================================= */
+
+.apexive-hover {
+
+  transition:
+
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+
+    box-shadow 300ms ease,
+
+    border-color 300ms ease;
+
+}
+
+.apexive-hover:hover {
+
+  transform: translateY(-6px);
+
+  box-shadow:
+
+    0 20px 50px rgba(0, 0, 0, 0.08);
+
+}
+
+/* =========================================
+
+   SELECTION
+
+   ========================================= */
+
+::selection {
+
+  background: #171717;
+
+  color: #ffffff;
+
+}
+
+/* =========================================
+
+   REDUCED MOTION
+
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+
+    scroll-behavior: auto;
+
+  }
+
+  *,
+
+  *::before,
+
+  *::after {
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+  }
+
+}
