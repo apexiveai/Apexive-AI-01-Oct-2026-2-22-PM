@@ -56,7 +56,7 @@ export default function Reveal({
 
             {
 
-                threshold: 0.12,
+                threshold: 0,
 
                 rootMargin: "0px 0px -50px 0px",
 
@@ -72,25 +72,23 @@ export default function Reveal({
 
     const hiddenTransform = {
 
-        up: "translateY(45px)",
+        up: "translateY(28px) rotate(0.8deg)",
 
-        left: "translateX(-45px)",
+        left: "translateX(-28px) rotate(-0.8deg)",
 
-        right: "translateX(45px)",
+        right: "translateX(28px) rotate(0.8deg)",
 
-        scale: "scale(0.94)",
+        scale: "scale(0.96) rotate(-0.6deg)",
 
     }[direction];
-
     return (
 
         <div
 
             ref={ref}
-
             className={className}
 
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "translate3d(0, 0, 0) scale(1)" : hiddenTransform, transition: `opacity 700ms ease ${delay}ms, transform 700ms cubic-bezier(.22, 1, .36, 1) ${delay}ms`, }}
+            style={{ opacity: visible ? 1 : 0, transform: visible ? "translate3d(0, 0, 0) rotate(0deg) scale(1)" : hiddenTransform, transition: `opacity 560ms ease-out ${delay}ms, transform 760ms cubic-bezier(.16, 1, .3, 1) ${delay}ms`, }}
 
         >
 

@@ -84,30 +84,6 @@ function formatDate(value: string) {
 
 }
 
-function GlowOrb({
-
-  className,
-
-}: {
-
-  className: string;
-
-}) {
-
-  return (
-
-    <div
-
-      aria-hidden="true"
-
-      className={`pointer-events-none absolute rounded-full blur-3xl ${className}`}
-
-    />
-
-  );
-
-}
-
 export default async function HomePage() {
 
   const [articles, projects, resources, threads] = await Promise.all([
@@ -132,7 +108,7 @@ export default async function HomePage() {
 
   return (
 
-    <div className="min-h-screen overflow-hidden bg-[#f7f9fc] text-slate-900">
+    <div className="apexive-home min-h-screen overflow-x-clip bg-[#070b12] text-slate-100">
 
       <style>{`
 
@@ -270,25 +246,25 @@ export default async function HomePage() {
 
         .apexive-float {
 
-          animation: apexiveFloat 7s ease-in-out infinite;
+          animation: apexiveFloat 6.5s cubic-bezier(.45, 0, .55, 1) infinite;
 
         }
 
         .apexive-float-reverse {
 
-          animation: apexiveFloatReverse 9s ease-in-out infinite;
+          animation: apexiveFloatReverse 10s cubic-bezier(.45, 0, .55, 1) infinite;
 
         }
 
         .apexive-pulse {
 
-          animation: apexivePulse 4s ease-in-out infinite;
+          animation: apexivePulse 4.5s ease-in-out infinite;
 
         }
 
         .apexive-scan {
 
-          animation: apexiveScan 7s linear infinite;
+          animation: apexiveScan 5.5s cubic-bezier(.37, 0, .63, 1) infinite;
 
         }
 
@@ -296,13 +272,13 @@ export default async function HomePage() {
 
           background-image:
 
-            linear-gradient(rgba(59,130,246,.06) 1px, transparent 1px),
+            linear-gradient(rgba(239,106,74,.09) 1px, transparent 1px),
 
-            linear-gradient(90deg, rgba(59,130,246,.06) 1px, transparent 1px);
+            linear-gradient(90deg, rgba(239,106,74,.09) 1px, transparent 1px);
 
           background-size: 40px 40px;
 
-          animation: apexiveGrid 12s linear infinite;
+          animation: apexiveGrid 18s linear infinite;
 
         }
 
@@ -313,7 +289,7 @@ export default async function HomePage() {
 
             rgba(255,255,255,0),
 
-            rgba(255,255,255,.8),
+            rgba(217,243,107,.8),
 
             rgba(255,255,255,0)
 
@@ -321,13 +297,13 @@ export default async function HomePage() {
 
           background-size: 200% 100%;
 
-          animation: apexiveShimmer 3.5s linear infinite;
+          animation: apexiveShimmer 4.2s cubic-bezier(.37, 0, .63, 1) infinite;
 
         }
 
         .apexive-blink {
 
-          animation: apexiveBlink 2s ease-in-out infinite;
+          animation: apexiveBlink 2.8s steps(2, end) infinite;
 
         }
 
@@ -376,12 +352,6 @@ export default async function HomePage() {
         <section className="relative isolate overflow-hidden border-b border-slate-200 bg-white">
 
           <div className="apexive-grid absolute inset-0 -z-20" />
-
-          <GlowOrb className="apexive-pulse -left-32 top-24 h-96 w-96 bg-blue-300/30" />
-
-          <GlowOrb className="apexive-float right-[-120px] top-20 h-[420px] w-[420px] bg-indigo-300/30" />
-
-          <GlowOrb className="apexive-float-reverse bottom-[-160px] left-1/3 h-96 w-96 bg-cyan-200/25" />
 
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
 
@@ -492,7 +462,7 @@ export default async function HomePage() {
 
                     <div className="absolute inset-0 opacity-50">
 
-                      <div className="apexive-grid h-full w-full [background-image:linear-gradient(rgba(96,165,250,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(96,165,250,.08)_1px,transparent_1px)]" />
+                      <div className="apexive-grid h-full w-full [background-image:linear-gradient(rgba(217,243,107,.1)_1px,transparent_1px),linear-gradient(90deg,rgba(217,243,107,.1)_1px,transparent_1px)]" />
 
                     </div>
 
@@ -619,7 +589,7 @@ export default async function HomePage() {
 
                       <div className="relative mt-5 overflow-hidden rounded-xl border border-slate-800 bg-black/20 px-4 py-3">
 
-                        <div className="apexive-scan absolute inset-x-0 top-0 h-px bg-blue-400 shadow-[0_0_15px_#60a5fa]" />
+                        <div className="apexive-scan absolute inset-x-0 top-0 h-px bg-orange-300 shadow-[0_0_15px_#f59e0b]" />
 
                         <div className="flex items-center gap-3">
 
@@ -754,8 +724,6 @@ export default async function HomePage() {
 
       <Reveal direction="right">
         <section className="relative overflow-hidden border-b border-slate-200 bg-slate-50">
-
-          <GlowOrb className="apexive-pulse right-[-150px] top-[-100px] h-96 w-96 bg-blue-200/30" />
 
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
 
@@ -1416,10 +1384,6 @@ export default async function HomePage() {
         <section className="relative overflow-hidden bg-[#070b14]">
 
           <div className="apexive-grid absolute inset-0 opacity-30" />
-
-          <GlowOrb className="apexive-pulse left-1/4 top-[-160px] h-96 w-96 bg-blue-600/20" />
-
-          <GlowOrb className="apexive-float right-[-100px] bottom-[-160px] h-96 w-96 bg-indigo-600/20" />
 
           <div className="relative mx-auto max-w-7xl px-6 py-24 text-center lg:px-8">
 

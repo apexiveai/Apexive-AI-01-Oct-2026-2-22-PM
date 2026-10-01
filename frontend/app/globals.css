@@ -1,389 +1,271 @@
 @import "tailwindcss";
 
 :root {
-
   --background: #ffffff;
-
   --foreground: #171717;
-
 }
 
 @theme inline {
-
   --color-background: var(--background);
-
   --color-foreground: var(--foreground);
-
   --font-sans: var(--font-geist-sans);
-
   --font-mono: var(--font-geist-mono);
-
 }
 
 @media (prefers-color-scheme: dark) {
-
   :root {
-
     --background: #0a0a0a;
-
     --foreground: #ededed;
-
   }
-
 }
 
 * {
-
   box-sizing: border-box;
-
 }
 
 html {
-
   scroll-behavior: smooth;
-
 }
 
 body {
-
   margin: 0;
-
   background: var(--background);
-
   color: var(--foreground);
-
   font-family: Arial, Helvetica, sans-serif;
-
   overflow-x: hidden;
-
 }
 
-/* =========================================
-
-   APEXIVE GLOBAL MOTION
-
-   ========================================= */
-
 @keyframes apexiveFloat {
-
-  0%,
-
-  100% {
-
-    transform: translate3d(0, 0, 0);
-
-  }
-
-  50% {
-
-    transform: translate3d(0, -12px, 0);
-
-  }
-
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0) rotate(1deg); }
 }
 
 @keyframes apexiveFloatSlow {
-
-  0%,
-
-  100% {
-
-    transform: translate3d(0, 0, 0) rotate(0deg);
-
-  }
-
-  50% {
-
-    transform: translate3d(10px, -18px, 0) rotate(2deg);
-
-  }
-
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(12px, -14px, 0) rotate(3deg); }
 }
 
 @keyframes apexivePulse {
-
-  0%,
-
-  100% {
-
-    opacity: 0.45;
-
-    transform: scale(1);
-
-  }
-
-  50% {
-
-    opacity: 1;
-
-    transform: scale(1.08);
-
-  }
-
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.12); }
 }
 
 @keyframes apexiveGlow {
-
-  0%,
-
-  100% {
-
-    opacity: 0.35;
-
-  }
-
-  50% {
-
-    opacity: 0.8;
-
-  }
-
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.65; }
 }
 
 @keyframes apexiveScan {
-
-  0% {
-
-    transform: translateY(-120%);
-
-  }
-
-  100% {
-
-    transform: translateY(120%);
-
-  }
-
+  0% { transform: translateY(-100%) scaleX(0.7); opacity: 0; }
+  18%, 82% { opacity: 0.8; }
+  100% { transform: translateY(700%) scaleX(1.2); opacity: 0; }
 }
 
 @keyframes apexiveShimmer {
-
-  0% {
-
-    transform: translateX(-120%);
-
-  }
-
-  100% {
-
-    transform: translateX(120%);
-
-  }
-
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  100% { transform: translateX(130%) skewX(-18deg); }
 }
 
 @keyframes apexiveBlink {
-
-  0%,
-
-  45%,
-
-  100% {
-
-    opacity: 1;
-
-  }
-
-  50%,
-
-  95% {
-
-    opacity: 0.35;
-
-  }
-
+  0%, 45%, 100% { opacity: 1; }
+  50%, 95% { opacity: 0.2; }
 }
 
 @keyframes apexiveGrid {
-
-  0% {
-
-    background-position:
-
-      0 0,
-
-      0 0;
-
-  }
-
-  100% {
-
-    background-position:
-
-      40px 40px,
-
-      40px 40px;
-
-  }
-
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
 }
 
-/* =========================================
-
-   UTILITY CLASSES
-
-   ========================================= */
-
-.apexive-float {
-
-  animation: apexiveFloat 5s ease-in-out infinite;
-
-}
-
-.apexive-float-slow {
-
-  animation: apexiveFloatSlow 8s ease-in-out infinite;
-
-}
-
-.apexive-pulse {
-
-  animation: apexivePulse 2.4s ease-in-out infinite;
-
-}
-
-.apexive-glow {
-
-  animation: apexiveGlow 3s ease-in-out infinite;
-
-}
-
-.apexive-scan {
-
-  animation: apexiveScan 4s linear infinite;
-
-}
-
-.apexive-blink {
-
-  animation: apexiveBlink 2s ease-in-out infinite;
-
-}
-
-.apexive-shimmer {
-
-  animation: apexiveShimmer 2.5s ease-in-out infinite;
-
-}
+.apexive-float { animation: apexiveFloat 6.5s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.apexive-float-slow { animation: apexiveFloatSlow 10s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.apexive-pulse { animation: apexivePulse 4.5s ease-in-out infinite; }
+.apexive-glow { animation: apexiveGlow 3.8s ease-in-out infinite; }
+.apexive-scan { animation: apexiveScan 5.5s cubic-bezier(0.37, 0, 0.63, 1) infinite; }
+.apexive-blink { animation: apexiveBlink 2.8s steps(2, end) infinite; }
+.apexive-shimmer { animation: apexiveShimmer 4.2s cubic-bezier(0.37, 0, 0.63, 1) infinite; }
 
 .apexive-grid {
-
   background-image:
-
-    linear-gradient(
-
-      rgba(0, 0, 0, 0.035) 1px,
-
-      transparent 1px
-
-    ),
-
-    linear-gradient(
-
-      90deg,
-
-      rgba(0, 0, 0, 0.035) 1px,
-
-      transparent 1px
-
-    );
-
-  background-size:
-
-    40px 40px,
-
-    40px 40px;
-
-  animation: apexiveGrid 12s linear infinite;
-
+    linear-gradient(rgba(239, 106, 74, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 106, 74, 0.09) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  animation: apexiveGrid 18s linear infinite;
 }
-
-/* =========================================
-
-   GLASS
-
-   ========================================= */
 
 .apexive-glass {
-
-  background: rgba(255, 255, 255, 0.72);
-
+  background: rgba(255, 252, 244, 0.76);
   backdrop-filter: blur(18px);
-
   -webkit-backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(0, 0, 0, 0.07);
-
+  border: 1px solid rgba(33, 38, 32, 0.1);
 }
 
-/* =========================================
-
-   HOVER EFFECTS
-
-   ========================================= */
-
 .apexive-hover {
-
-  transition:
-
-    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-
-    box-shadow 300ms ease,
-
-    border-color 300ms ease;
-
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 420ms ease, border-color 420ms ease;
 }
 
 .apexive-hover:hover {
-
-  transform: translateY(-6px);
-
-  box-shadow:
-
-    0 20px 50px rgba(0, 0, 0, 0.08);
-
+  transform: translateY(-8px) rotate(-0.35deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
-
-/* =========================================
-
-   SELECTION
-
-   ========================================= */
 
 ::selection {
-
-  background: #171717;
-
-  color: #ffffff;
-
+  background: #d9f36b;
+  color: #20251f;
 }
 
-/* =========================================
-
-   REDUCED MOTION
-
-   ========================================= */
-
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .apexive-float,
+  .apexive-float-slow,
+  .apexive-pulse,
+  .apexive-glow,
+  .apexive-scan,
+  .apexive-blink,
+  .apexive-shimmer,
+  .apexive-grid { animation: none !important; }
+}
 
-  html {
+.apexive-home {
+  color: #e6edf5;
+  background-color: #070b12;
+  background-image:
+    linear-gradient(rgba(70, 91, 116, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(70, 91, 116, 0.075) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 
-    scroll-behavior: auto;
+.apexive-home section {
+  border-color: #202b3a;
+}
 
-  }
+.apexive-home [class~="bg-white"],
+.apexive-home [class~="bg-white/80"],
+.apexive-home [class~="bg-white/90"] {
+  background-color: rgba(11, 17, 27, 0.94);
+}
 
-  *,
+.apexive-home [class~="bg-slate-50"],
+.apexive-home [class~="bg-slate-100"] {
+  background-color: #0c131e;
+}
 
-  *::before,
+.apexive-home [class~="bg-blue-50"],
+.apexive-home [class~="bg-blue-50/40"] {
+  background-color: rgba(255, 132, 74, 0.09);
+}
 
-  *::after {
+.apexive-home [class~="bg-blue-100/50"] {
+  background-color: rgba(255, 132, 74, 0.08);
+}
 
-    animation-duration: 0.01ms !important;
+.apexive-home [class~="text-slate-950"],
+.apexive-home [class~="text-slate-900"],
+.apexive-home [class~="text-[#172033]"] {
+  color: #eef3fa;
+}
 
-    animation-iteration-count: 1 !important;
+.apexive-home [class~="text-slate-700"] {
+  color: #c6d0dd;
+}
 
-    transition-duration: 0.01ms !important;
+.apexive-home [class~="text-slate-600"] {
+  color: #aab7c8;
+}
 
-  }
+.apexive-home [class~="text-slate-500"] {
+  color: #8796aa;
+}
 
+.apexive-home [class~="text-slate-400"] {
+  color: #748398;
+}
+
+.apexive-home [class~="text-slate-300"] {
+  color: #627187;
+}
+
+.apexive-home [class*="text-blue-"] {
+  color: #ff925f;
+}
+
+.apexive-home [class*="border-slate-"] {
+  border-color: #263244;
+}
+
+.apexive-home [class*="border-blue-"] {
+  border-color: rgba(255, 132, 74, 0.32);
+}
+
+.apexive-home [class~="from-slate-950"] {
+  --tw-gradient-from: #f2f6fa;
+}
+
+.apexive-home [class~="via-blue-700"] {
+  --tw-gradient-via: #ff7a45;
+}
+
+.apexive-home [class~="to-indigo-600"] {
+  --tw-gradient-to: #52d7e8;
+}
+
+.apexive-home a.bg-slate-950 {
+  background-color: #f47745;
+  color: #10151c;
+}
+
+.apexive-home a.bg-slate-950:hover {
+  background-color: #ff925f;
+}
+
+.apexive-home [class~="rounded-3xl"],
+.apexive-home [class~="rounded-[28px]"] {
+  border-radius: 8px;
+}
+
+.apexive-home [class~="rounded-2xl"] {
+  border-radius: 6px;
+}
+
+.apexive-site-header {
+  border-color: #202b3a;
+  background-color: rgba(8, 13, 21, 0.96);
+}
+
+.apexive-site-header [class*="text-slate-"] {
+  color: #aab7c8;
+}
+
+.apexive-site-header [class~="text-[#172033]"] {
+  color: #eef3fa;
+}
+
+.apexive-site-header [class*="text-blue-"] {
+  color: #ff925f;
+}
+
+.apexive-site-header [class*="border-slate-"] {
+  border-color: #263244;
+}
+
+.apexive-site-header [class~="bg-white/95"],
+.apexive-site-header [class~="bg-slate-50"] {
+  background-color: #0c131e;
+}
+
+.apexive-site-header [class~="bg-blue-50"] {
+  background-color: rgba(255, 132, 74, 0.1);
+}
+
+.apexive-site-header [class~="bg-[#172033]"] {
+  background-color: #f47745;
+  color: #10151c;
+}
+
+.apexive-site-header [class~="hover:bg-slate-50"]:hover,
+.apexive-site-header [class~="hover:bg-white/5"]:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.apexive-site-header [class~="hover:bg-red-50"]:hover {
+  background-color: rgba(248, 113, 113, 0.12);
 }

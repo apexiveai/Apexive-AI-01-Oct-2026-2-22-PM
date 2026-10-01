@@ -136,8 +136,13 @@ export default function SubscriptionsPage() {
 
   useEffect(() => {
 
-    loadSubscriptions();
+    const timeoutId = window.setTimeout(() => {
 
+      void loadSubscriptions();
+
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   async function handleCancel(subscriptionId: number) {

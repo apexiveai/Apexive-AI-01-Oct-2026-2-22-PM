@@ -10,8 +10,6 @@ import {
 
   getMySubscriptions,
 
-  subscribeToPlan,
-
   type SubscriptionPlan,
 
   type Subscription,
@@ -25,8 +23,6 @@ export default function PricingPage() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
 
   const [loading, setLoading] = useState(true);
-
-  const [subscribing, setSubscribing] = useState<number | null>(null);
 
   const [error, setError] = useState("");
 
@@ -202,8 +198,6 @@ function handleSubscribe(plan: {
 
             const active = hasActiveSubscription(plan.product_key);
 
-            const isSubscribing = subscribing === plan.id;
-
             return (
 
               <article
@@ -295,23 +289,17 @@ function handleSubscribe(plan: {
 
                       type="button"
 
-                      disabled={isSubscribing}
-
                       onClick={() => handleSubscribe(plan)}
 
                       className="flex w-full items-center justify-center rounded-xl bg-[#172033] px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
 
                     >
 
-                      {isSubscribing
+                      {`Subscribe for $${Number(
 
-                        ? "Subscribing..."
+                        plan.monthly_price,
 
-                        : `Subscribe for $${Number(
-
-                          plan.monthly_price,
-
-                        ).toLocaleString()}/month`}
+                      ).toLocaleString()}/month`}
 
                     </button>
 

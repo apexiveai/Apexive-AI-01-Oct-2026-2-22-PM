@@ -112,7 +112,7 @@ export default function SiteHeader() {
 
   return (
 
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="apexive-site-header sticky top-0 z-50 border-b border-[#202b3a] bg-[#080d15]/95 text-slate-200 backdrop-blur">
       
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         
